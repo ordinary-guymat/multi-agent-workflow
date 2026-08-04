@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Vacation Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Multi-agent AI workflow</p>
+          <h1>Dream Vacation Planner</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="themeToggle" class="ghost-btn">🌙 Dark</button>
+          <button id="resetBtn" class="ghost-btn">Restart</button>
+        </div>
+      </header>
+
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Three specialized agents</p>
+          <h2>From inspiration to a polished itinerary in minutes.</h2>
+          <p>
+            Agent 1 discovers your dream destination, Agent 2 builds the plan,
+            and Agent 3 reviews every detail before presenting the final escape.
+          </p>
+          <div class="progress-block">
+            <div class="progress-labels">
+              <span id="progressLabel">Destination discovery</span>
+              <span id="progressPercent">33%</span>
+            </div>
+            <div class="progress-bar">
+              <span id="progressFill"></span>
+            </div>
+            <div class="step-pill-row">
+              <span class="step-pill active" data-step="1">1. Discover</span>
+              <span class="step-pill" data-step="2">2. Plan</span>
+              <span class="step-pill" data-step="3">3. Review</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <strong id="statDest">12+</strong>
+            <span>Dream destinations</span>
+          </div>
+          <div class="stat-card">
+            <strong id="statDays">7</strong>
+            <span>Flexible trip lengths</span>
+          </div>
+          <div class="stat-card">
+            <strong id="statBudget">Premium</strong>
+            <span>Budget-aware planning</span>
+          </div>
+        </div>
+      </section>
+
+      <main class="workflow-grid">
+        <section class="panel active" id="agent1Panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Agent 1</p>
+              <h3>Dream destination discovery</h3>
+            </div>
+            <span class="status-badge">Inspiration</span>
+          </div>
+
+          <div class="filters" id="filterBar"></div>
+          <div class="destination-grid" id="destinationGrid"></div>
+
+          <div class="selection-card">
+            <div class="selection-copy">
+              <p class="eyebrow">Selected destination</p>
+              <h4 id="selectedName">Pick a place to begin</h4>
+              <p id="selectedSummary">Choose a destination card and share a few details to unlock the itinerary.</p>
+            </div>
+            <form id="tripForm" class="trip-form">
+              <label>
+                Preferred travel month
+                <select id="travelMonth" required>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
+              </label>
+              <label>
+                Number of travelers
+                <input id="travelerCount" type="number" min="1" max="8" value="2" required />
+              </label>
+              <label>
+                Travel style
+                <select id="travelStyle" required>
+                  <option value="Luxury">Luxury</option>
+                  <option value="Relaxed">Relaxed</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Food & Culture">Food & Culture</option>
+                  <option value="Family">Family</option>
+                </select>
+              </label>
+              <label>
+                Budget
+                <select id="budget" required>
+                  <option value="Luxury">Luxury</option>
+                  <option value="Mid-range">Mid-range</option>
+                  <option value="Budget">Budget</option>
+                </select>
+              </label>
+              <label>
+                Vacation length
+                <select id="tripDays" required>
+                  <option value="3">3 days</option>
+                  <option value="5">5 days</option>
+                  <option value="7" selected>7 days</option>
+                  <option value="10">10 days</option>
+                  <option value="14">14 days</option>
+                </select>
+              </label>
+              <button type="submit" class="primary-btn">Send to Agent 2</button>
+            </form>
+          </div>
+
+          <div class="insight-card">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Live travel brief</p>
+                <h4>Agent 1 handoff</h4>
+              </div>
+            </div>
+            <p id="agent1Insight">The destination is being refined into an inspiring, landmark-led experience.</p>
+          </div>
+        </section>
+
+        <section class="panel" id="agent2Panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Agent 2</p>
+              <h3>Travel planner & itinerary builder</h3>
+            </div>
+            <span class="status-badge">Planning</span>
+          </div>
+
+          <div class="summary-card" id="summaryCard"></div>
+          <div class="itinerary-list" id="itineraryList"></div>
+
+          <div class="insight-card">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Live travel brief</p>
+                <h4>Agent 2 handoff</h4>
+              </div>
+            </div>
+            <p id="agent2Insight">Your itinerary is being shaped around the destination’s signature landmarks, food, and pace.</p>
+          </div>
+        </section>
+
+        <section class="panel" id="agent3Panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Agent 3</p>
+              <h3>Reviewer & optimizer</h3>
+            </div>
+            <span class="status-badge">Optimized</span>
+          </div>
+
+          <div class="review-card" id="reviewCard"></div>
+          <div class="final-grid" id="finalGrid"></div>
+
+          <div class="insight-card">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Live travel brief</p>
+                <h4>Agent 3 handoff</h4>
+              </div>
+            </div>
+            <p id="agent3Insight">The final package is being polished for comfort, efficiency, and memorable highlights.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
